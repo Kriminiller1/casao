@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CasaO — Aftentasker</title>
+<meta name="description" content="Kuraterede aftentasker. Fundet i Málaga, udvalgt til Danmark. Første kollektion: fem modeller i begrænset antal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+
+.page {
+  background: #f6f1e7;
+  color: #2b2125;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  --accent: #9e3b22;
+}
+
+.serif { font-family: 'Bodoni Moda', Georgia, serif; }
+.it { font-style: italic; }
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── Announcement bar ── */
+.ann {
+  background: #2a1d22;
+  color: #efe3d6;
+  text-align: center;
+  font-size: 11.5px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+}
+
+/* ── Nav ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(246,241,231,.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e6dcc8;
+}
+.navin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.brand {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 0;
+}
+.brand img {
+  height: 130px;
+  width: auto;
+  mix-blend-mode: multiply;
+  display: block;
+  margin: -20px 0 -20px -8px;
+}
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+.navlink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2b2125;
+  letter-spacing: .01em;
+  padding: 0;
+  transition: color .2s;
+}
+.navlink:hover { color: var(--accent); }
+.kurv { font-size: 13px; color: #8c8077; }
+
+/* ── Shared type ── */
+.over {
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #9a8d80;
+}
+.lead {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #5f564f;
+  max-width: 32ch;
+  margin: 0;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2b2125;
+  color: #f6f1e7;
+  border: 1px solid #2b2125;
+  padding: 15px 30px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.btn:hover { background: transparent; color: #2b2125; }
+.ghost { background: transparent; color: #2b2125; }
+.ghost:hover { background: #2b2125; color: #f6f1e7; }
+.alink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2b2125;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #2b2125;
+  transition: color .2s, border-color .2s;
+}
+.alink:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── Hero ── */
+.hero { padding: 70px 0 84px; }
+.herogrid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 56px;
+  align-items: center;
+}
+.h1 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(52px, 7vw, 100px);
+  line-height: .97;
+  font-weight: 500;
+  letter-spacing: -.015em;
+  margin: 18px 0 0;
+}
+.btnrow {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 34px;
+  flex-wrap: wrap;
+}
+.heronote {
+  margin: 30px 0 0;
+  font-size: 13px;
+  letter-spacing: .06em;
+  color: #8c8077;
+}
+.heroimg {
+  aspect-ratio: 1/1;
+  background: #efe7d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.heroimg img {
+  width: 84%;
+  mix-blend-mode: multiply;
+}
+.hcap {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  font-size: 11.5px;
+  letter-spacing: .1em;
+  color: #9a8d80;
+  text-transform: uppercase;
+}
+
+/* ── Section ── */
+.section { padding: 64px 0; }
+.shead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.h2 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin: 10px 0 0;
+}
+
+/* ── Product grid ── */
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+}
+.tileimg {
+  aspect-ratio: 1/1;
+  background: #efe7d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.tileimg img {
+  width: 84%;
+  mix-blend-mode: multiply;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1);
+}
+.tile:hover .tileimg img { transform: scale(1.05); }
+.tmeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 16px;
+  gap: 10px;
+}
+.tname {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 20px;
+  line-height: 1;
+}
+.tprice { font-size: 14px; white-space: nowrap; }
+.tcolor { font-size: 12.5px; color: #9a8d80; margin-top: 4px; letter-spacing: .02em; }
+
+/* ── "Tasken på"-split ── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: stretch;
+}
+.intext {
+  padding: 84px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  background: #2a1d22;
+  color: #efe3d6;
+}
+.inquote {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.1;
+  font-weight: 500;
+  margin: 0;
+}
+.insub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #c2b1a6;
+  margin: 0;
+  max-width: 34ch;
+}
+.inover { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #a8948a; }
+.splitimg {
+  min-height: 440px;
+  overflow: hidden;
+}
+.splitimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── Lifestyle image on product page ── */
+.lifestyle {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 0;
+  align-items: stretch;
+}
+.lifestyle-img {
+  overflow: hidden;
+  min-height: 500px;
+}
+.lifestyle-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.lifestyle-text {
+  background: #2a1d22;
+  color: #efe3d6;
+  padding: 70px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.lifestyle-text .inquote { font-size: clamp(22px, 2.6vw, 36px); }
+
+/* ── Lifestyle gallery on home ── */
+.lgallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-top: 3px;
+}
+.lgallery-item {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.lgallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.lgallery-item:hover img { transform: scale(1.04); }
+
+/* ── Story ── */
+.story {
+  background: #2a1d22;
+  color: #efe3d6;
+  padding: 112px 0;
+}
+.storyin {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+.storyh {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  margin: 6px 0 4px;
+}
+.storyp { font-size: 18px; line-height: 1.7; color: #d6c7ba; margin: 0; }
+.storysig { font-size: 13px; letter-spacing: .08em; color: #a8948a; margin-top: 6px; }
+.storyover { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #a8948a; }
+
+/* ── Facts ── */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  border-top: 1px solid #e6dcc8;
+  padding-top: 40px;
+}
+.fact { display: flex; flex-direction: column; gap: 9px; }
+.factk { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #9a8d80; }
+.factv { font-family: 'Bodoni Moda', serif; font-size: 20px; line-height: 1.25; }
+
+/* ── Footer ── */
+.foot { background: #2a1d22; color: #cdbdb0; padding: 74px 0 36px; }
+.fgrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.fbrand {
+  margin-bottom: 14px;
+  line-height: 0;
+}
+.fbrand img {
+  height: 52px;
+  width: auto;
+  filter: invert(1) brightness(1.8) sepia(.15) hue-rotate(10deg);
+  display: block;
+}
+.ftag { font-size: 14px; line-height: 1.6; color: #b6a89c; max-width: 30ch; }
+.fh { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #9a8478; margin: 0 0 14px; font-weight: 600; }
+.flink {
+  display: block;
+  background: none;
+  border: none;
+  color: #cdbdb0;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 7px 0;
+  text-align: left;
+  transition: color .2s;
+}
+.flink:hover { color: #f3ead9; }
+.fbot {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #43323a;
+  margin-top: 50px;
+  padding-top: 22px;
+  font-size: 12.5px;
+  color: #8d7d72;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ── Shop view ── */
+.shophead { padding: 64px 0 12px; }
+.shopintro {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #5f564f;
+  max-width: 46ch;
+  margin: 18px 0 0;
+}
+.shopgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 30px;
+}
+
+/* ── Product view ── */
+.pwrap { padding: 30px 0 84px; }
+.back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  color: #8c8077;
+  padding: 0;
+  margin-bottom: 28px;
+  letter-spacing: .04em;
+  transition: color .2s;
+}
+.back:hover { color: #2b2125; }
+.pview {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 60px;
+  align-items: start;
+}
+.pimgbox {
+  aspect-ratio: 1/1;
+  background: #efe7d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 92px;
+}
+.pimgbox img { width: 82%; mix-blend-mode: multiply; }
+.pname {
+  font-family: 'Bodoni Moda', serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.01em;
+  margin: 14px 0 0;
+}
+.pprice { font-size: 22px; margin-top: 18px; }
+.pdesc { font-size: 16px; line-height: 1.6; color: #5f564f; margin: 22px 0 0; max-width: 46ch; }
+.pbtns { display: flex; gap: 14px; margin: 30px 0 6px; flex-wrap: wrap; }
+.spec { margin-top: 30px; }
+.specrow {
+  display: grid;
+  grid-template-columns: 175px 1fr;
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px solid #ece3d2;
+  font-size: 14.5px;
+}
+.speck { color: #9a8d80; letter-spacing: .02em; }
+.specv { color: #2b2125; }
+.pnote { font-size: 13px; color: #8c8077; margin-top: 18px; line-height: 1.5; max-width: 46ch; }
+.deliv {
+  display: flex;
+  gap: 26px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #6f655d;
+}
+.also { padding-top: 70px; }
+
+/* ── Views ── */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .herogrid, .split, .pview, .facts, .fgrid, .lifestyle { grid-template-columns: 1fr; }
+  .pgrid, .shopgrid { grid-template-columns: repeat(2, 1fr); }
+  .intext, .lifestyle-text { padding: 54px 30px; }
+  .container { padding: 0 22px; }
+  .pimgbox { position: static; }
+  .story { padding: 80px 0; }
+  .navlinks .navlink { display: none; }
+  .splitimg { min-height: 320px; }
+  .lifestyle-img { min-height: 320px; order: -1; }
+  .lgallery { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .pgrid, .shopgrid { grid-template-columns: 1fr; }
+  .lgallery { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page" id="app">
+
+  <!-- Announcement bar -->
+  <div class="ann">Første kollektion · Málaga · Begrænset antal</div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container navin">
+      <button class="brand" onclick="goHome()"><img src="uploads/logo.png" alt="CasaO"></button>
+      <div class="navlinks">
+        <button class="navlink" onclick="goShop()">Tasker</button>
+        <button class="navlink" onclick="goHome()">Om kollektionen</button>
+        <button class="navlink" onclick="goHome()">Levering</button>
+        <button class="navlink" onclick="goHome()">Kontakt</button>
+        <span class="kurv">Kurv (0)</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HOME ═══════════════ -->
+  <div id="view-home" class="view active">
+    <main>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container herogrid">
+          <div>
+            <div class="over">CasaO · Aftentasker</div>
+            <h1 class="h1">Lille taske. <span class="it">Stor effekt.</span></h1>
+            <div class="btnrow">
+              <p class="lead">Små aftentasker med farve, mønster og gulddetaljer. Første kollektion er fundet i Málaga og findes kun i et begrænset antal.</p>
+            </div>
+            <div class="btnrow">
+              <button class="btn" onclick="goShop()">Se taskerne</button>
+              <button class="alink" onclick="goHome()">Om kollektionen</button>
+            </div>
+            <p class="heronote">Fem modeller · Udvalgt til Danmark</p>
+          </div>
+          <div class="heroimg" id="hero-img-box">
+            <img id="hero-img" src="" alt="">
+            <span class="hcap" id="hero-cap"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product strip -->
+      <section class="section">
+        <div class="container">
+          <div class="shead">
+            <div>
+              <div class="over">Kollektion 01 · Málaga</div>
+              <h2 class="h2">Fem tasker. Ét udvalg.</h2>
+            </div>
+            <button class="alink" onclick="goShop()">Se hele kollektionen</button>
+          </div>
+          <div class="pgrid" id="home-product-grid"></div>
+        </div>
+      </section>
+
+      <!-- Tasken på -->
+      <section class="split">
+        <div class="intext">
+          <div class="inover">Tasken på</div>
+          <p class="inquote serif">Til de aftener, hvor sort ikke behøver være kedeligt.</p>
+          <p class="insub">Bæres som clutch eller med den lange skuldersnor — alt efter aftenen. Plads til mobil, kort og det mest nødvendige.</p>
+        </div>
+        <div class="splitimg">
+          <img src="uploads/lifestyle/rubin.png" alt="Rubin aftentaske båret til sort kjole ved solnedgang">
+        </div>
+      </section>
+
+      <!-- Livsstilsgalleri -->
+      <div class="lgallery">
+        <div class="lgallery-item">
+          <img src="uploads/lifestyle/champagne.png" alt="Champagne taske på café">
+        </div>
+        <div class="lgallery-item">
+          <img src="uploads/lifestyle/safran.png" alt="Safran taske på gaden">
+        </div>
+        <div class="lgallery-item">
+          <img src="uploads/lifestyle/ambra.png" alt="Ambra taske over skulderen">
+        </div>
+      </div>
+
+      <!-- Historien -->
+      <section class="story">
+        <div class="container storyin">
+          <div class="storyover">Historien</div>
+          <h2 class="storyh">Det begyndte med fem tasker i Málaga.</h2>
+          <p class="storyp">Små, farverige og langt fra de sorte standardtasker, man normalt finder herhjemme. Derfor tog vi dem med til Danmark.</p>
+          <p class="storyp">Første kollektion består af et begrænset udvalg af dekorative aftentasker med broderede mønstre, pailletter og guldfarvede detaljer.</p>
+          <p class="storyp">Taskerne er valgt, fordi de kan noget meget enkelt: de kan ændre et helt outfit uden at fylde ret meget.</p>
+          <div class="storysig">— Anna Møller Mikkelsen, CasaO</div>
+        </div>
+      </section>
+
+      <!-- Størrelse & brug -->
+      <section class="section">
+        <div class="container">
+          <div class="shead">
+            <div>
+              <div class="over">Størrelse &amp; brug</div>
+              <h2 class="h2">Lidt plads. Meget udtryk.</h2>
+            </div>
+          </div>
+          <div class="facts">
+            <div class="fact">
+              <span class="factk">Plads til</span>
+              <span class="factv">Mobil, kort, nøgler og lidt makeup</span>
+            </div>
+            <div class="fact">
+              <span class="factk">Bæres som</span>
+              <span class="factv">Clutch eller med skuldersnor</span>
+            </div>
+            <div class="fact">
+              <span class="factk">Mål</span>
+              <span class="factv">Cirka 17–18 × 12 cm</span>
+            </div>
+            <div class="fact">
+              <span class="factk">Antal</span>
+              <span class="factv">Begrænset — første kollektion</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════ SHOP ═══════════════ -->
+  <div id="view-shop" class="view">
+    <main>
+      <section class="shophead">
+        <div class="container">
+          <div class="over">Første kollektion</div>
+          <h1 class="h1 serif" style="font-size:clamp(46px,6vw,84px)">Málaga</h1>
+          <p class="shopintro">Fem aftentasker, fundet i Málaga og udvalgt, fordi de gør noget ved selv det enkleste outfit. Mønsteret kan variere en smule fra taske til taske.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="shopgrid" id="shop-product-grid"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ═══════════════ PRODUCT ═══════════════ -->
+  <div id="view-product" class="view">
+    <main class="pwrap">
+      <div class="container">
+        <button class="back" onclick="goShop()">← Tilbage til kollektionen</button>
+        <div class="pview">
+          <div>
+            <div class="pimgbox">
+              <img id="p-img" src="" alt="">
+            </div>
+          </div>
+          <div>
+            <div class="over" id="p-color"></div>
+            <h1 class="pname" id="p-name"></h1>
+            <div class="pprice" id="p-price"></div>
+            <p class="pdesc" id="p-desc"></p>
+            <div class="pbtns">
+              <button class="btn">Læg i kurv</button>
+              <button class="btn ghost">Føj til ønskeliste</button>
+            </div>
+            <div class="deliv">
+              <span>Fragt fra 39 kr</span>
+              <span>Levering 2–4 hverdage</span>
+              <span>14 dages retur</span>
+            </div>
+            <div class="spec" id="p-specs"></div>
+            <p class="pnote">Taskerne er fundet og udvalgt i Málaga. Materiale og produktionsland er endnu ikke endeligt dokumenteret — vi opdaterer siden, når det er. Mønsteret kan variere fra taske til taske.</p>
+          </div>
+        </div>
+
+        <!-- Lifestyle split on product page -->
+        <div class="lifestyle" id="p-lifestyle">
+          <div class="lifestyle-img">
+            <img id="p-lifestyle-img" src="" alt="">
+          </div>
+          <div class="lifestyle-text">
+            <div class="inover">Tasken på</div>
+            <p class="inquote serif" id="p-lifestyle-quote"></p>
+            <p class="insub">Bæres som clutch eller med den lange skuldersnor — alt efter aftenen.</p>
+          </div>
+        </div>
+
+        <section class="also">
+          <div class="shead">
+            <div>
+              <div class="over">Resten af kollektionen</div>
+              <h2 class="h2" style="font-size:clamp(26px,3.2vw,40px)">Se også</h2>
+            </div>
+          </div>
+          <div class="pgrid" id="also-grid"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="foot">
+    <div class="container">
+      <div class="fgrid">
+        <div>
+          <div class="fbrand"><img src="uploads/logo.png" alt="CasaO"></div>
+          <p class="ftag">Kuraterede aftentasker. Fundet i Málaga, udvalgt til Danmark.</p>
+        </div>
+        <div>
+          <h4 class="fh">Kollektion</h4>
+          <button class="flink" onclick="goShop()">Tasker</button>
+          <button class="flink" onclick="goHome()">Om kollektionen</button>
+        </div>
+        <div>
+          <h4 class="fh">Kundeservice</h4>
+          <button class="flink" onclick="goHome()">Levering &amp; retur</button>
+          <button class="flink" onclick="goHome()">Handelsbetingelser</button>
+          <button class="flink" onclick="goHome()">Privatliv &amp; cookies</button>
+        </div>
+        <div>
+          <h4 class="fh">Kontakt</h4>
+          <button class="flink">Anna Møller Mikkelsen</button>
+          <button class="flink">hej@casao.dk</button>
+          <button class="flink">Instagram</button>
+        </div>
+      </div>
+      <div class="fbot">
+        <span>© 2026 CasaO · Anna Møller Mikkelsen</span>
+        <span>Begrænset antal · Første kollektion: Málaga</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const fmt = n => n.toLocaleString('da-DK') + ' kr';
+
+const PRODUCTS = [
+  {
+    id: 'champagne',
+    name: 'Champagne',
+    color: 'Champagne & lys guld',
+    price: 309,
+    img: 'uploads/IMG_4267_hi.jpg',
+    lifestyle: 'uploads/lifestyle/champagne.png',
+    lifestyleAlt: 'Champagne taske på cafébord med kaffe og blomster',
+    lifestyleQuote: 'Fra morgenkaffe til aftenstemning.',
+    w: 18, h: 12, strap: 120,
+    desc: 'Lille aftentaske i champagnefarvet tekstil med pailletter i et fint rudemønster og lang, flettet skuldersnor. Kan også bæres som clutch.',
+  },
+  {
+    id: 'safran',
+    name: 'Safran',
+    color: 'Varm orange & guld',
+    price: 279,
+    img: 'uploads/IMG_4263_hi.jpg',
+    lifestyle: 'uploads/lifestyle/safran.png',
+    lifestyleAlt: 'Safran taske båret over skulderen på en sydeuropæisk gade',
+    lifestyleQuote: 'Den varme farve, der taler for sig selv.',
+    w: 17, h: 12, strap: 118,
+    desc: 'Varm, orange aftentaske med broderet siksakmønster, pailletter og gulddetaljer. Bæres med skuldersnor eller som clutch.',
+  },
+  {
+    id: 'terrakotta',
+    name: 'Terrakotta',
+    color: 'Dyb rød-orange & guld',
+    price: 299,
+    img: 'uploads/IMG_4264_hi.jpg',
+    lifestyle: 'uploads/lifestyle/terrakotta.png',
+    lifestyleAlt: 'Terrakotta taske båret til aftensmad udendørs',
+    lifestyleQuote: 'Til de aftener, der tager en overraskende drejning.',
+    w: 17, h: 12, strap: 118,
+    desc: 'Dyb rød-orange aftentaske med broderet siksakmønster og pailletter. Et tydeligt, men varmt farvevalg til det enkle outfit.',
+  },
+  {
+    id: 'rubin',
+    name: 'Rubin',
+    color: 'Rød & guld',
+    price: 329,
+    img: 'uploads/IMG_4265_hi.jpg',
+    lifestyle: 'uploads/lifestyle/rubin.png',
+    lifestyleAlt: 'Rubin taske holdt foran sort kjole ved solnedgang over by',
+    lifestyleQuote: 'Til de aftener, hvor sort ikke behøver være kedeligt.',
+    w: 18, h: 12, strap: 120,
+    desc: 'Rød aftentaske med tæt guldpaillet i et grafisk rudemønster. Den taske, der løfter den sorte kjole.',
+  },
+  {
+    id: 'ambra',
+    name: 'Ambra',
+    color: 'Orange velour & guldbroderi',
+    price: 289,
+    img: 'uploads/IMG_4266_hi.jpg',
+    lifestyle: 'uploads/lifestyle/ambra.png',
+    lifestyleAlt: 'Ambra taske over skulderen i lyst interiør med blomster',
+    lifestyleQuote: 'Varm, blomstret og helt sin egen.',
+    w: 17, h: 12, strap: 118,
+    desc: 'Orange aftentaske i blød velourlook med blomstret guldbroderi og pailletter. Varm og dekorativ uden at fylde meget.',
+  },
+];
+
+const SPECS = p => [
+  { k: 'Mål',           v: `${p.w} × ${p.h} cm` },
+  { k: 'Skuldersnor',   v: `${p.strap} cm, flettet` },
+  { k: 'Lukning',       v: 'Indstukket klap' },
+  { k: 'Foring',        v: 'Tekstilforing' },
+  { k: 'Materiale',     v: 'Tekstil med pailletter og metallisk broderi' },
+  { k: 'Plads til',     v: 'Mobil, kort, nøgler og lidt makeup' },
+  { k: 'Produktionsland', v: 'Endnu ikke dokumenteret' },
+  { k: 'Pleje',         v: 'Tør forsigtigt af. Tåler ikke vask.' },
+];
+
+let currentId = 'ambra';
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function goHome() { showView('home'); }
+function goShop() { showView('shop'); }
+
+function openProduct(id) {
+  currentId = id;
+  const p = PRODUCTS.find(x => x.id === id);
+  document.getElementById('p-img').src = p.img;
+  document.getElementById('p-img').alt = p.name;
+  document.getElementById('p-color').textContent = p.color;
+  document.getElementById('p-name').textContent = p.name;
+  document.getElementById('p-price').textContent = fmt(p.price);
+  document.getElementById('p-desc').textContent = p.desc;
+
+  const specHtml = SPECS(p).map(s =>
+    `<div class="specrow"><span class="speck">${s.k}</span><span class="specv">${s.v}</span></div>`
+  ).join('');
+  document.getElementById('p-specs').innerHTML = specHtml;
+
+  const others = PRODUCTS.filter(x => x.id !== id).slice(0, 4);
+  document.getElementById('also-grid').innerHTML = tileHtml(others);
+
+  // Lifestyle image
+  if (p.lifestyle) {
+    document.getElementById('p-lifestyle-img').src = p.lifestyle;
+    document.getElementById('p-lifestyle-img').alt = p.lifestyleAlt || '';
+    document.getElementById('p-lifestyle-quote').textContent = p.lifestyleQuote || '';
+    document.getElementById('p-lifestyle').style.display = '';
+  } else {
+    document.getElementById('p-lifestyle').style.display = 'none';
+  }
+
+  showView('product');
+}
+
+function tileHtml(list) {
+  return list.map(p => `
+    <button class="tile" onclick="openProduct('${p.id}')">
+      <div class="tileimg"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="tmeta">
+        <span class="tname">${p.name}</span>
+        <span class="tprice">${fmt(p.price)}</span>
+      </div>
+      <span class="tcolor">${p.color}</span>
+    </button>
+  `).join('');
+}
+
+function init() {
+  // Hero product (Ambra)
+  const hero = PRODUCTS.find(p => p.id === 'ambra');
+  document.getElementById('hero-img').src = hero.img;
+  document.getElementById('hero-img').alt = hero.name;
+  document.getElementById('hero-cap').textContent = `${hero.name} · ${hero.color}`;
+
+  // Home product strip
+  document.getElementById('home-product-grid').innerHTML = tileHtml(PRODUCTS);
+
+  // Shop grid
+  document.getElementById('shop-product-grid').innerHTML = tileHtml(PRODUCTS);
+}
+
+init();
+</script>
+</body>
+</html>

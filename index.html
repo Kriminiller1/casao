@@ -250,15 +250,19 @@ body { margin: 0; }
   color: inherit;
 }
 .tileimg {
-  aspect-ratio: 3/4;
-  background: #111;
+  aspect-ratio: 4/3;
+  background: #f4ede3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: relative;
 }
 .tileimg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
   transition: transform .65s cubic-bezier(.2,.7,.2,1);
 }
 .tile:hover .tileimg img { transform: scale(1.06); }
@@ -450,7 +454,7 @@ body { margin: 0; }
   gap: 2px;
   margin-top: 2px;
 }
-.shopgrid .tileimg { aspect-ratio: 3/4; }
+.shopgrid .tileimg { aspect-ratio: 4/3; }
 .shopgrid .tmeta { padding: 16px 20px 0; }
 .shopgrid .tcolor { padding: 4px 20px 20px; display: block; }
 
@@ -477,16 +481,20 @@ body { margin: 0; }
   align-items: start;
 }
 .pimgbox {
-  aspect-ratio: 3/4;
-  background: #111;
+  aspect-ratio: 4/3;
+  background: #f4ede3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: sticky;
   top: 88px;
 }
 .pimgbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
 .pname {
   font-family: 'Bodoni Moda', serif;
